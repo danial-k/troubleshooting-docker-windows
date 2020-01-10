@@ -11,3 +11,16 @@ Once the container has started and you are able to run shell commands, run the f
 tail -f /dockerdesktop/var/log/docker.log
 ```
 This command uses the [tail](https://linux.die.net/man/1/tail) utility in follow mode (```-f```) to watch entries being added to the end of the log file.  Note that other log files may exist in the directory that may be of value.  Also note that ```/var/log``` will be log location for the Ubunutu container while ```/dockerdesktop/var/log``` will be the log location for the mounted Hyper-V vm.
+
+# Monitoring network activity
+Install monitoring tools
+```shell
+apt update
+apt install -y tcpdump ssldump
+```
+
+Start monitoring traffic:
+```shell
+tcpdump -X -vvv -n -i eth0
+ssldump -A -d -i eth0
+```
